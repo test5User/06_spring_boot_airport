@@ -1,0 +1,29 @@
+.button {
+    display: inline-block;
+    padding: 1px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    background-color: lightgray;
+    border: 1px solid black;
+    font: inherit;
+    border-radius: 5px;
+    margin: 1px 10px;
+}
+
+.button:hover {
+    background-color: gray;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: forestgreen;
+}
+
+.blue {
+    color: blue;
+}
