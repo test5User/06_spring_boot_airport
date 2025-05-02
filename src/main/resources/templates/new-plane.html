@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Airplane Shop</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Add new Plane</h1>
+    <form th:action="@{/airplanes}" th:object="${plane}" method="post">
+        <label for="model">Model name:</label>
+        <input id="model" th:field="*{model}"/>
+        <div class="red" th:errors="*{model}"></div><br>
+        <label for="places">Places:</label>
+        <input id="places" th:field="*{places}"/>
+        <div class="red" th:errors="*{places}"></div><br>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
