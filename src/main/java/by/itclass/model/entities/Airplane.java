@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "airplanes")
 @Getter
@@ -21,4 +23,6 @@ public class Airplane {
     private String model;
     @Min(value = 1, message = "Places should be greater than 0.")
     private int places;
+    @OneToMany(mappedBy = "airplane", fetch = FetchType.EAGER)
+    private List<Flight> flights;
 }
