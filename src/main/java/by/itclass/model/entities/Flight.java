@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "flights")
 @Getter
@@ -25,4 +27,6 @@ public class Flight {
     private int planeId;
     @ManyToOne
     private Airplane airplane;
+    @OneToMany(mappedBy = "flight", fetch = FetchType.EAGER)
+    private List<Passenger> passengers;
 }

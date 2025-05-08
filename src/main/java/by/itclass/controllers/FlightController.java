@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/flights")
@@ -49,6 +46,33 @@ public class FlightController {
         var airplane = airplaneRepository.findById(flight.getPlaneId()).get();
         flight.setAirplane(airplane);
         flightRepository.save(flight);
+        return "redirect:/flights";
+    }
+
+    @GetMapping("/{id}")
+    public String viewFlight(@PathVariable("id") int id, Model model) {
+        model.addAttribute("flight", flightRepository.getById(id));
+        return "flight-info";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delFlight(@PathVariable("id") int id) {
+        flightRepository.deleteById(id);
+        return "redirect:/flights";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editFlight(@PathVariable("id") int id, Model model) {
+        var flight = flightRepository.getById(id);
+        flight.setPlaneId(flight.getAirplane().getId());
+        model.addAttribute("flight", flight);
+        return "edit-flight";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateFlight(@ModelAttribute("flight") Flight fl) {
+        fl.setAirplane(airplaneRepository.getById(fl.getPlaneId()));
+        flightRepository.save(fl);
         return "redirect:/flights";
     }
 }

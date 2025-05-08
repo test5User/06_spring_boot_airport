@@ -21,7 +21,12 @@
             <td style="min-width: 150px;" th:text="${flight.direction}"></td>
             <td th:text="${flight.airplane.model}"></td>
             <td>
-
+                <a class="button" th:href="@{/flights/{id} (id=${flight.id})}">View</a>
+                <form th:action="@{/flights/{id} (id=${flight.id})}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="button">Delete</button>
+                </form>
+                <a th:href="@{/flights/edit/{id} (id=${flight.id})}" class="button">Edit</a>
             </td>
         </tr>
     </table>

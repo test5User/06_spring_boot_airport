@@ -19,10 +19,12 @@
             <td style="min-width: 150px;" th:text="${plane.model}"></td>
             <td th:text="${plane.places}"></td>
             <td>
-                <form th:action="@{/airplanes/{id} (id=${plane.id})}" method="post">
-                    <input type="hidden" name="_method" value="delete"/>
-                    <button type="submit" class="button">Delete</button>
-                </form>
+                <div th:if="${#lists.isEmpty(plane.flights)}">
+                    <form th:action="@{/airplanes/{id} (id=${plane.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="button">Delete</button>
+                    </form>
+                </div>
             </td>
         </tr>
     </table>

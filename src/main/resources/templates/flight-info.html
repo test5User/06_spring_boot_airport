@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Info</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Flight Number: <span th:text="${flight.number}"></span></h1>
+    <h2>Plain Model: <span th:text="${flight.airplane.model}"></span></h2>
+    <h2>Direction: <span th:text="${flight.direction}"></span></h2>
+
+    <p>
+        <a class="button" th:href="@{/flights}">Back</a>
+    </p>
+</body>
+</html>
