@@ -21,6 +21,8 @@ public class Passenger {
     @NotEmpty(message = "place should not be empty")
     @Pattern(regexp = "^(?:[1-9]|1\\d|2[0-5])[A-F]$")
     private String place;
+    @Transient
+    private int flightId;
     @ManyToOne
     private Flight flight;
 }

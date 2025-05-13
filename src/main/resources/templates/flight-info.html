@@ -9,8 +9,27 @@
     <h1>Flight Number: <span th:text="${flight.number}"></span></h1>
     <h2>Plain Model: <span th:text="${flight.airplane.model}"></span></h2>
     <h2>Direction: <span th:text="${flight.direction}"></span></h2>
-
+    <h2>Passengers:</h2>
+    <table>
+        <tr class="blue">
+            <th>Place</th>
+            <th>FIO</th>
+            <th>Actions</th>
+        </tr>
+        <tr class="green" th:each="passenger : ${flight.passengers}">
+            <td th:text="${passenger.place}"></td>
+            <td th:text="${passenger.fio}"></td>
+            <td>
+                <form th:action="@{/passengers/{id}/{id2} (id=${passenger.id}, id2=${flight.id})}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="button">Delete</button>
+                </form>
+                <a class="button" th:href="@{/passengers/upd/{id} (id=${passenger.id})}">Update</a>
+            </td>
+        </tr>
+    </table>
     <p>
+        <a class="button" th:href="@{/passengers/add/{id} (id=${flight.id})}">Add Passenger to flight</a>
         <a class="button" th:href="@{/flights}">Back</a>
     </p>
 </body>

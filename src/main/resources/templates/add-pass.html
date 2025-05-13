@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <form th:action="@{/passengers}" th:object="${pass}" method="post">
+        <label for="fio">FIO:</label>
+        <input id="fio" th:field="*{fio}">
+        <div class="red" th:errors="*{fio}"></div><br>
+        <label for="place">Place:</label>
+        <input id="place" th:field="*{place}">
+        <div class="red" th:errors="*{place}"></div><br>
+        <input type="hidden" th:field="*{flightId}">
+        <button type="submit" class="button">Register</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Passenger</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <p class="red">
+        You can change the place only for <span th:text="${pass.fio}"></span>
+    </p>
+    <form th:action="@{/passengers/{id} (id=${pass.id})}" th:object="${pass}" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <input type="hidden" th:field="*{fio}">
+        <label for="place">Place:</label>
+        <input id="place" th:field="*{place}">
+        <div class="red" th:errors="*{place}"></div><br>
+        <input type="hidden" th:field="*{flightId}">
+        <button class="button" type="submit">Update</button>
+        <a class="button" th:href="@{/flights/{id} (id=${pass.flightId})}">Back</a>
+    </form>
+</body>
+</html>
